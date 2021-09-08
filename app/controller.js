@@ -1,3 +1,5 @@
+import client from "./loader.js";
+
 // Uses the db client from loader.js
 const controller = {
     async index() {
@@ -8,3 +10,5 @@ const controller = {
         return workouts;
     }
 }
+
+export default controller;
