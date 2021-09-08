@@ -1,14 +1,12 @@
 import client from "./loader.js";
 
-// Uses the db client from loader.js
-const controller = {
-    async index() {
-        const workouts = await client.db("fitnessdb")
-        .collection("workouts")
-        .find()
-        .toArray()
-        return workouts;
+const workoutsConnection = client.db("fitnessdb").collection("workouts")
+
+export default {
+    index() {
+        return workoutsConnection.find().toArray();
+    },
+    create(newWorkout) {
+        return workoutsConnection.insertOne(newWorkout);
     }
 }
-
-export default controller;
