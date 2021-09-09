@@ -2,7 +2,8 @@
 import express from "express";
 import morgan from "morgan";
 import config from "./config.js";
-import apiRouter from "./router.js"
+import apiRouter from "./router.js";
+import mongoose from "mongoose";
 // TODO: Import the routes
 
 const app = express();
@@ -18,3 +19,4 @@ app.use("/api", apiRouter);
 app.listen(config.port, () => {
   console.log(`Server 🏃🏾‍♂️ at: http://localhost:${config.port}`);
 });
+

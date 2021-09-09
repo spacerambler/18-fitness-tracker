@@ -20,4 +20,22 @@ router.post("/workouts", async (req, res)=> {
     }
 })
 
+router.get("/workouts/cardio", async (_, res)=>{
+    try {
+        const cardio = await controller.findCardio();
+        res.json(cardio)
+    } catch (err) {
+        console.log(err)
+    }
+})
+
+router.get("/exercises", async (_, res)=>{
+    try {
+        const weight = await controller.resistanceWeight();
+        res.json(weight)
+    } catch (err) {
+        console.log(err)
+    }
+})
+
 export default router;
