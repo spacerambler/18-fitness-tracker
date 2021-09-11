@@ -11,8 +11,10 @@ const app = express();
 // Logging middleware
 app.use(morgan("dev"));
 
-app.use(express.static("public"));
+app.use(express.static("public", { extensions: ["html"] }));
 app.use(express.json());
+
+mongoose.connect(process.env.DB_CLIENT_URL || "mongodb://localhost/fitnessdb")
 
 app.use("/api", apiRouter);
 

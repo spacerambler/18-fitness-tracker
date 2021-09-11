@@ -20,22 +20,18 @@ router.post("/workouts", async (req, res)=> {
     }
 })
 
-router.get("/workouts/cardio", async (_, res)=>{
+router.post("/workouts", async (req, res)=>{
     try {
-        const cardio = await controller.findCardio();
-        res.json(cardio)
-    } catch (err) {
-        console.log(err)
-    }
+        const addExercise = await controller.create(req.body);
+        res.status(201).json(newExercise);
+    } catch(error) {}
 })
 
-router.get("/exercises", async (_, res)=>{
+router.get("/workouts/range", async (_,res)=>{
     try {
-        const weight = await controller.resistanceWeight();
-        res.json(weight)
-    } catch (err) {
-        console.log(err)
-    }
+        const workouts = await controller.index();
+    res.json(workouts);
+    } catch (err) {console.log(err);}
 })
 
 export default router;
