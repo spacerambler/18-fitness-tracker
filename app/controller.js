@@ -10,7 +10,9 @@ const workoutsConnection = client.db("fitnessdb").collection("workouts");
 
 export default {
   index() {
-    return workoutsConnection.find().toArray();
+    return workoutsConnection
+      .aggregate([{ $addFields: { totalDuration: { $sum: "$duration" } } }])
+      .toArray();
   },
   create() {
     const date = new Date();
